@@ -2,44 +2,47 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as React from 'react';
 
+// import {
+//   Header,
+//   MainSection,
+//   model,
+//   addTodo,
+//   editTodo,
+//   clearCompleted,
+//   completeAll,
+//   completeTodo,
+//   deleteTodo
+// } from '../../todos';
+
 import {
-  Header,
-  MainSection,
-  model,
-  addTodo,
-  editTodo,
-  clearCompleted,
-  completeAll,
-  completeTodo,
-  deleteTodo
-} from '../../todos';
+  SearchBlock,
+  model
+} from '../../reacttypeahead';
 
 interface AppProps {
-  todos: model.Todo[];
+  icons: model.Icon[];
   dispatch: Dispatch<{}>;
 }
 
 class App extends React.Component<AppProps, void> {
   render() {
-    const { todos, dispatch } = this.props;
+    const { icons, dispatch } = this.props;
 
     return (
-      <div className="todoapp 56">
-        <Header addTodo={(text: string) => dispatch(addTodo(text))} />
-        <MainSection
-            todos={todos}
-            editTodo={(t,s) => dispatch(editTodo(t, s))}
-            deleteTodo={(t: model.Todo) => dispatch(deleteTodo(t))}
-            completeTodo={(t: model.Todo) => dispatch(completeTodo(t))}
-            clearCompleted={() => dispatch(clearCompleted())}
-            completeAll={() => dispatch(completeAll())}/>
+      <div className="central-part">
+        <div className="search-block-wrapper">
+          <SearchBlock />
+        </div>
+        <div className="notification-text-wrapper">
+          Npw
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  todos: state.todos
+  icons: state.icons
 });
 
 export default connect(mapStateToProps)(App);
