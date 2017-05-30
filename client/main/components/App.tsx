@@ -31,7 +31,7 @@ class App extends React.Component<AppProps, void> {
     return (
       <div className="central-part">
         <div className="search-block-wrapper">
-          <SearchBlock />
+          <SearchBlock initialFocusedInput={true} />
         </div>
         <div className="notification-text-wrapper">
           Npw

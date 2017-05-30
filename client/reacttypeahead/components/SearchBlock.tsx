@@ -1,32 +1,36 @@
 import * as React from 'react';
+import SearchInput from './SearchInput'
 
 interface SearchBlockProps {
-	
+	initialFocusedInput: boolean;
 };
 
 class SearchBlock extends React.Component<SearchBlockProps, void> {
-	// handleSearch(text: string) {
-	// 	this.props.getHints(text);
-	// }
 
-	// handleFocus(isFocused: boolean) {
-	// 	this.props.getIsFocused(isFocused);
-	// }
+	
+	processSearch(text: string) {
+		console.log(text);
+	}
+
+	processFocus(isFocused: boolean) {
+		
+	}
 
 	render() {
 		return(
 			<div className="search-block-inner">
-			  <div className="search-block" element-id="search-block" view-status="loading">
-			    <input className="search-input"/>
-			    <div className="loader-wrapper">
-			      <div className="loader">Loading</div>
-			    </div>
-			  </div>
+			  <SearchInput
+			  	value=''
+			  	initialFocusedInput={this.props.initialFocusedInput}
+			  	placeholder="Type to search icon..."
+			  	onFocus={this.processFocus.bind(this)}
+			  	processTypeaheadValue={this.processSearch.bind(this)}
+			  />
 
 			  <div className="items-list-block">
 			    <div className="items-list-wrapper">
 			      <div className="items-list-inner">
-			        <div className="items-list" element-id="items-list">
+			        <div className="items-list">
 			          <div className="item-wrapper">
 			            <div className="item clearfix">
 			              <div className="left-column pull-left">
