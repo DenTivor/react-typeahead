@@ -36,6 +36,10 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
 		this.props.onFocus(false);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		debugger;
+	}
+
 	render() {
 		// debugger;
 		return(

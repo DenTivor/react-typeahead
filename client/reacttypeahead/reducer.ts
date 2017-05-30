@@ -1,7 +1,7 @@
 import { assign } from 'lodash';
 import { handleActions, Action } from 'redux-actions';
 
-import { Icon, IState } from './model';
+import { IconCard, IState } from './model';
 import {
   ADD_TODO,
   DELETE_TODO,
@@ -11,14 +11,14 @@ import {
   CLEAR_COMPLETED
 } from './constants/ActionTypes';
 
-const initialState: IState = [<Icon>{
+const initialState: IState = [<IconCard>{
   id: 0,
   text: 'Use Redux with TypeScript',
   completed: false
 }];
 
-export default handleActions<IState, Icon>({
-  [ADD_TODO]: (state: IState, action: Action<Icon>): IState => {
+export default handleActions<IState, IconCard>({
+  [ADD_TODO]: (state: IState, action: Action<IconCard>): IState => {
     return [{
       id: action.payload.id,
       completed: action.payload.completed,
@@ -26,21 +26,21 @@ export default handleActions<IState, Icon>({
     }, ...state];
   },
 
-  [DELETE_TODO]: (state: IState, action: Action<Icon>): IState => {
+  [DELETE_TODO]: (state: IState, action: Action<IconCard>): IState => {
     return state.filter(todo =>
       todo.id !== action.payload.id
     );
   },
 
-  [EDIT_TODO]: (state: IState, action: Action<Icon>): IState => {
+  [EDIT_TODO]: (state: IState, action: Action<IconCard>): IState => {
     return <IState>state.map(todo =>
       todo.id === action.payload.id
-        ? assign(<Icon>{}, todo, { text: action.payload.text })
+        ? assign(<IconCard>{}, todo, { text: action.payload.text })
         : todo
     );
   },
 
-  [COMPLETE_TODO]: (state: IState, action: Action<Icon>): IState => {
+  [COMPLETE_TODO]: (state: IState, action: Action<IconCard>): IState => {
     return <IState>state.map(todo =>
       todo.id === action.payload.id ?
         assign({}, todo, { completed: !todo.completed }) :
@@ -48,14 +48,14 @@ export default handleActions<IState, Icon>({
     );
   },
 
-  [COMPLETE_ALL]: (state: IState, action: Action<Icon>): IState => {
+  [COMPLETE_ALL]: (state: IState, action: Action<IconCard>): IState => {
     const areAllMarked = state.every(todo => todo.completed);
     return <IState>state.map(todo => assign({}, todo, {
       completed: !areAllMarked
     }));
   },
 
-  [CLEAR_COMPLETED]: (state: IState, action: Action<Icon>): IState => {
+  [CLEAR_COMPLETED]: (state: IState, action: Action<IconCard>): IState => {
     return state.filter(todo => todo.completed === false);
   }
 }, initialState);

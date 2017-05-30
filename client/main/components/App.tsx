@@ -20,18 +20,20 @@ import {
 } from '../../reacttypeahead';
 
 interface AppProps {
-  icons: model.Icon[];
+  icons: model.IconCard[];
   dispatch: Dispatch<{}>;
+  getIcons(value: string):void;
 }
 
 class App extends React.Component<AppProps, void> {
   render() {
+    const { getIcons } = this.props;
     const { icons, dispatch } = this.props;
 
     return (
       <div className="central-part">
         <div className="search-block-wrapper">
-          <SearchBlock initialFocusedInput={true} />
+          <SearchBlock initialFocusedInput={true} getIcons={(text: string) => {getIcons(text)}} />
         </div>
         <div className="notification-text-wrapper">
           Npw
@@ -45,4 +47,18 @@ const mapStateToProps = state => ({
   icons: state.icons
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  getIcons: (value: string) => {
+    debugger;
+    // dispatch(requestHints(value));
+
+    // fetchHints(value).then((hints: model.ProfileCard[]) => {
+    //   dispatch(receiveHints(hints));
+    // });
+  },
+  // selectHint: (value: string) => {
+  //   dispatch(selectHint(value));
+  // }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

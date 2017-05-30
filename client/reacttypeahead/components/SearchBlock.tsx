@@ -3,13 +3,14 @@ import SearchInput from './SearchInput'
 
 interface SearchBlockProps {
 	initialFocusedInput: boolean;
+	getIcons: (text: string) => any;
 };
 
 class SearchBlock extends React.Component<SearchBlockProps, void> {
 
-	
+
 	processSearch(text: string) {
-		console.log(text);
+		this.props.getIcons(text);
 	}
 
 	processFocus(isFocused: boolean) {
