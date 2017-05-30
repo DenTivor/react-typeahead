@@ -16,7 +16,10 @@ import * as React from 'react';
 
 import {
   SearchBlock,
-  model
+  model,
+  fetchIcons,
+  requestIcons,
+  receiveIcons,
 } from '../../reacttypeahead';
 
 interface AppProps {
@@ -50,10 +53,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getIcons: (value: string) => {
     debugger;
-    // dispatch(requestHints(value));
+    // dispatch(requestIcons(value));
 
-    // fetchHints(value).then((hints: model.ProfileCard[]) => {
-    //   dispatch(receiveHints(hints));
+    // fetchIcons(value).then((cards: model.IconCard[]) => {
+    //   debugger;
+    //   dispatch(receiveIcons(cards));
     // });
   },
   // selectHint: (value: string) => {

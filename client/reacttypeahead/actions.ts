@@ -2,43 +2,37 @@ import { createAction, Action } from 'redux-actions'
 
 import { Promise } from 'es6-promise'
 
-import STUB_API from './api'
+import SERVICE_STUB from './service-stub'
 
 import {
-	ReceiveItems, 
-	RequestItem, 
-	ProfileCard 
+	ReceiveIcons, 
+	RequestIcon, 
+	IconCard 
 } from './model'
 
 import { 
-	SELECT_HINT,
-	REQUEST_HINTS,
-	RECEIVE_HINTS
+	REQUEST_ICONS,
+	RECEIVE_ICONS
 } from './constants/ActionTypes'
 
-const selectHint = createAction<string, string>(
-	SELECT_HINT,
-	(value: string) => (value)
-)
-
-const requestHints = createAction<RequestItem, string>(
-	REQUEST_HINTS,
+const requestIcons = createAction<RequestIcon, string>(
+	REQUEST_ICONS,
 	(text: string) => ({value: text})
 )
 
-const receiveHints = createAction<ReceiveItems, ProfileCard[]>(
-	RECEIVE_HINTS,
-	(hints: ProfileCard[]) => ({hints: hints})
+const receiveIcons = createAction<ReceiveIcons, IconCard[]>(
+	RECEIVE_ICONS,
+	(cards: IconCard[]) => ({cards: cards})
 )
 
-const fetchHints = (value: string) => {
-	const p: Promise<ProfileCard[]> = new Promise(
-		(resolve: (hints: ProfileCard[]) => void, reject: (str: string) => void) => {
-			resolve(STUB_API.get(value));
+const fetchIcons = (value: string) => {
+	const p: Promise<IconCard[]> = new Promise(
+		(resolve: (hints: IconCard[]) => void, reject: (str: string) => void) => {
+			resolve(SERVICE_STUB.get(value));
 		}
 	);
 	
 	return p;
 }
 
-export { selectHint, fetchHints, requestHints, receiveHints }
+export { requestIcons, receiveIcons, fetchIcons }

@@ -4,4 +4,16 @@ export type IconCard = {
   url: string;
 };
 
-export type IState = IconCard[];
+export type RequestIcon = {
+	value: string;
+}
+
+export type ReceiveIcons = {
+	cards: IconCard[];
+}
+
+export type IState = {
+	isFetching: boolean;
+	cards?: IconCard[];
+	value?: string;
+};
