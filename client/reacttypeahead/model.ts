@@ -1,7 +1,7 @@
 export type IconCard = {
   id?: number;
-  text: string;
-  completed: boolean;
+  description: string;
+  url: string;
 };
 
 export type IState = IconCard[];
