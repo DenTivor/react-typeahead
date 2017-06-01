@@ -1,10 +1,16 @@
 import React from 'react';
+import Typeahead from './Typeahead';
 
 const Page = () => (
-  <div>
-    <p>This is only a simple feature, search Github users ...</p>
-    <p>All the UI is coded in React and ES6, using only isomorphic techs like superagent for the AJAX request (so that it could also work server-side).</p>
-  </div>
+	  <div className="content">
+	    <div className="content-inner">
+	      <div className="central-part-wrapper">
+	        <div className="central-part">
+	        	<Typeahead />
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 );
 
 export default Page;
