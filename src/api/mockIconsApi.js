@@ -9,7 +9,7 @@ const icons = [
 ];
 
 class IconsApi {
-    static getIconsTodos() {
+    static getAllIcons() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(Object.assign([], icons));

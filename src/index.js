@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Page from '../../components/Page';
+import { render } from 'react-dom';
+import Page from './components/Page';
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import {loadIcons} from './actions/iconsActions';
 
 const store = configureStore();
-store.dispatch(loadTodos());
+store.dispatch(loadIcons());
 
 render (
     <Provider store={store}>
