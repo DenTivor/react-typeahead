@@ -14,3 +14,13 @@ export function loadIcons(){
         });
     };
 }
+
+export function findIcons(query){
+    return dispatch => {
+        return iconsAPI.findIcons(query).then(icons => {
+            dispatch(loadIconsSuccess(icons));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}

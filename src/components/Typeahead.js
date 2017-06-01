@@ -1,79 +1,54 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import SearchBlock from './SearchBlock';
+import ItemsList from './ItemsList';
+import * as iconsActions from '../actions/iconsActions';
 
 class Typeahead extends React.Component {
+	constructor(props, context) {
+		super(props, context);
+
+		this.state = {
+            viewStatus: 'passive',
+            isLoading: false
+        };
+
+		this.handleSearchBlockChange = this.handleSearchBlockChange.bind(this);
+		this.handleSearchBlockBlur = this.handleSearchBlockBlur.bind(this);
+		this.handleSearchBlockFocus = this.handleSearchBlockFocus.bind(this);
+	}
+
+	handleSearchBlockChange(event){
+		let query = event.target.value;
+		
+		this.props.actions.findIcons(query)
+			.then((icons) => {
+                console.log("then");
+            })
+            .catch(error => {
+                console.log("error");
+            });
+	}
+
+	handleSearchBlockBlur(event){
+		this.setState({ viewStatus: 'passive' })
+	}
+
+	handleSearchBlockFocus(event){
+		this.setState({ viewStatus: 'active' })
+	}
+
     render(){
         return (
 			<div className="search-block-wrapper">
-				<div className="search-block-inner">
-				  <div className="search-block">
-				    <input className="search-input" />
-				    <div className="loader-wrapper">
-				      <div className="loader">Loading</div>
-				    </div>
-				  </div>
-				  <div className="items-list-block">
-				    <div className="items-list-wrapper">
-				      <div className="items-list-inner">
-				        <div className="items-list">
-				          <div className="item-wrapper">
-				            <div className="item clearfix">
-				              <div className="left-column pull-left">
-				                <div className="profile-image"></div>
-				              </div>
-				              <div className="right-column pull-left">
-				                <div className="top-block"><span className="name">User blue icon</span><span className="identification main-grey-color">@user_blue</span></div>
-				                <div className="center-block"><span className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a lacinia bibendum! Neque morbi nisi mus convallis lectus: Vulputate justo etiam eros; Molestie proin porta auctor montes magna pellentesque?</span></div>
-				                <div className="bottom-block">
-				                  <div className="social-activity">
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Tweets:</span><span className="social-counter">42978</span></div>
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Following:</span><span className="social-counter">4200</span></div>
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Followers:</span><span className="social-counter">8</span></div>
-				                  </div>
-				                </div>
-				              </div>
-				            </div>
-				          </div>
-				          <div className="item-wrapper">
-				            <div className="item clearfix">
-				              <div className="left-column pull-left">
-				                <div className="profile-image"></div>
-				              </div>
-				              <div className="right-column pull-left">
-				                <div className="top-block"><span className="name">User blue icon</span><span className="identification main-grey-color">@user_blue</span></div>
-				                <div className="center-block"><span className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a lacinia bibendum! Neque morbi nisi mus convallis lectus: Vulputate justo etiam eros; Molestie proin porta auctor montes magna pellentesque?</span></div>
-				                <div className="bottom-block">
-				                  <div className="social-activity">
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Tweets:</span><span className="social-counter">42978</span></div>
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Following:</span><span className="social-counter">4200</span></div>
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Followers:</span><span className="social-counter">8</span></div>
-				                  </div>
-				                </div>
-				              </div>
-				            </div>
-				          </div>
-				          <div className="item-wrapper">
-				            <div className="item clearfix">
-				              <div className="left-column pull-left">
-				                <div className="profile-image"></div>
-				              </div>
-				              <div className="right-column pull-left">
-				                <div className="top-block"><span className="name">User blue icon</span><span className="identification main-grey-color">@user_blue</span></div>
-				                <div className="center-block"><span className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a lacinia bibendum! Neque morbi nisi mus convallis lectus: Vulputate justo etiam eros; Molestie proin porta auctor montes magna pellentesque?</span></div>
-				                <div className="bottom-block">
-				                  <div className="social-activity">
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Tweets:</span><span className="social-counter">42978</span></div>
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Following:</span><span className="social-counter">4200</span></div>
-				                    <div className="social-parameters"><span className="social-param-name main-grey-color">Followers:</span><span className="social-counter">8</span></div>
-				                  </div>
-				                </div>
-				              </div>
-				            </div>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
+				<div className={'search-block-inner ' + this.state.viewStatus}>
+				  <SearchBlock
+				  	onChange={this.handleSearchBlockChange}
+			  		onBlur={this.handleSearchBlockBlur}
+			  		onFocus={this.handleSearchBlockFocus}
+			  	  />
+				  <ItemsList items={this.props.icons}/>
 				</div>
 			</div>
         );
@@ -84,4 +59,17 @@ class Typeahead extends React.Component {
 //     children: PropTypes.object.isRequired
 // };
 
-export default connect()(Typeahead);
+function mapStatesToProps(state, ownProps) {
+
+    return {
+        icons: state.icons
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(iconsActions, dispatch)
+    };
+}
+
+export default connect(mapStatesToProps, mapDispatchToProps)(Typeahead);
