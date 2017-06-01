@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import icons from '../reacttypeahead';
+import reducers from '../reacttypeahead';
 
 const rootReducer = combineReducers({
-  icons
+  reducers
 });
 
 export default rootReducer;
