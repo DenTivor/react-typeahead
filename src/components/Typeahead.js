@@ -47,8 +47,11 @@ class Typeahead extends React.Component {
 				  	onChange={this.handleSearchBlockChange}
 			  		onBlur={this.handleSearchBlockBlur}
 			  		onFocus={this.handleSearchBlockFocus}
+			  		isSearchQueryPending={this.props.isSearchQueryPending}
 			  	  />
-				  <ItemsList items={this.props.icons}/>
+				  <ItemsList
+				  	items={this.props.icons}
+				  />
 				</div>
 			</div>
         );
@@ -60,9 +63,10 @@ class Typeahead extends React.Component {
 // };
 
 function mapStatesToProps(state, ownProps) {
-
+	debugger;
     return {
-        icons: state.icons
+        icons: state.icons,
+        isSearchQueryPending: state.isSearchQueryPending
     };
 }
 

@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
 
-const SearchBlock =({onChange, onBlur, onFocus}) => {
+const SearchBlock =({onChange, onBlur, onFocus, isSearchQueryPending}) => {
     return (
 		<div className="search-block">
+			<h2>{isSearchQueryPending}</h2>
 			<input className="search-input"
 				onChange={onChange}
 				onBlur={onBlur}

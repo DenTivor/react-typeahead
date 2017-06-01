@@ -51,10 +51,8 @@ class IconsApi {
     static findIcons(query) {
         let newIcons = this.getItemsForSearch(query);
 
-        // debugger;
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                // debugger;
                 resolve(Object.assign([], newIcons));
             }, delay);
         });
@@ -69,7 +67,6 @@ class IconsApi {
             }
         });
 
-        // debugger;
         return result;
     }
 }
