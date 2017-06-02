@@ -1,25 +1,18 @@
-import { createAction, Action } from 'redux-actions';
-import { assign } from 'lodash';
-
-import { Icon, RequestIcon, ReceiveIcons, IState } from './model';
-
-import {
-  REQUEST_ICONS,
-  RECEIVE_ICONS
-} from './constants/ActionTypes';
+import { Promise } from 'es6-promise';
+import IconsApi from './api/mockIconsApi';
+import { Icon } from './model';
 
 
-const requestHints = createAction<RequestItem, string>(
-  REQUEST_HINTS,
-  (text: string) => ({value: text})
-)
-
+const findIcons = (value: string) => {
+  const promise: Promise<Icon[]> = new Promise(
+    (resolve: (icons: Icon[]) => void, reject: (str: string) => void) => {
+      resolve(IconsApi.get(value));
+    }
+  );
+  
+  return promise; 
+}
 
 export {
-  addTodo,
-  deleteTodo,
-  editTodo,
-  completeTodo,
-  completeAll,
-  clearCompleted
+  findIcons
 }

@@ -8,11 +8,11 @@ export type Icon = {
 };
 
 export type RequestIcon = {
-	value: string;
+	query: string;
 }
 
 export type ReceiveIcons = {
-	hints: Icon[];
+	icons: Icon[];
 }
 
 export type IState = {
