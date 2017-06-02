@@ -30,8 +30,7 @@ module.exports = (options) => ({
     }, {
       test: /\.(jpg|png|gif)$/,
       loaders: [
-        'file-loader',
-        'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
+        'file-loader'
       ],
     }, {
       test: /\.html$/,
