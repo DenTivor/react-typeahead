@@ -7,24 +7,24 @@ import {
 } from './constants/ActionTypes';
 
 const initialState: IState = {
-  icons: []
+  icons: [],
+  value: ''
 };
 
-export default handleActions<IState, any>({
-
-}, initialState);
-
-// export default handleActions<IState, any>({
-//   [LOAD_ICONS_SUCCESS] : (state: IState, action: Action<ReceiveIcons>) : IState => {
-//     console.log(LOAD_ICONS_SUCCESS);
-
-//     return {
-//       ...state,
-//       value: action.payload.value,
-//       icons: action.payload.icons
-//     };
-//   }
+// export default handleActions<state: IState, Action<ReceiveIcons>>({
+//   switch(Action.type) 
 // }, initialState);
+
+export default handleActions<IState, any>({
+  [LOAD_ICONS_SUCCESS] : (state: IState, action: Action<ReceiveIcons>) : IState => {
+    console.log(LOAD_ICONS_SUCCESS);
+
+    return {
+      ...state,
+      icons: action.payload.icons
+    };
+  }
+}, initialState);
 
 // export default function iconReducer(state = initialState.icons, action){
 //     switch (action.type){
