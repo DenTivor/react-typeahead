@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import {
   SearchBlock,
+  ItemsList,
   model,
   findIcons,
   requestIcons,
@@ -26,10 +27,16 @@ class App extends React.Component<AppProps, AppState> {
 	}
 
 	render() {
+		const { icons, getIcons } = this.props;
 		return (
 			<div className="search-block-wrapper">
 				<div className='search-block-inner '>
-				  <SearchBlock />
+				  <SearchBlock
+				  	onExternalUpdate={(text: string) => {getIcons(text)}}
+				  />
+				  <ItemsList
+				  	items={icons}
+				  />
 				</div>
 			</div>
 		)

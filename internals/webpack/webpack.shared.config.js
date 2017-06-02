@@ -67,7 +67,8 @@ module.exports = (options) => ({
     ],
   }, options.resolve),
 
-  devtool: options.devtool,
+  // devtool: options.devtool,
+  devtool: 'cheap-module-eval-source-map',
 
   target: 'web',
 });
