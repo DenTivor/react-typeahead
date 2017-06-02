@@ -1,4 +1,5 @@
 import * as React from 'react';
+import App from './App'
 
 class Page extends React.Component<void, void> {
 	render() {
@@ -7,7 +8,7 @@ class Page extends React.Component<void, void> {
 				<div className="content-inner">
 					<div className="central-part-wrapper">
 						<div className="central-part">
-							<h2>Test</h2>
+							<App />
 						</div>
 					</div>
 				</div>

@@ -37,7 +37,21 @@ module.exports = require('./webpack.shared.config')({
     presets: ['react-hmre'],
   },
 
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
+
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      exclude: /node_modules/,
+      loaders: ['style-loader', 'css-loader'],
+    }, {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader',
+    }, {
+      test: /\.(jpg|png|gif)$/,
+      loaders: 'file-loader'
+    }],
+  },
 });
 
 function templateContent() {

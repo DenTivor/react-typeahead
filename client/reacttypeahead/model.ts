@@ -8,7 +8,7 @@ export type Icon = {
 };
 
 export type RequestIcon = {
-	query: string;
+	value: string;
 }
 
 export type ReceiveIcons = {

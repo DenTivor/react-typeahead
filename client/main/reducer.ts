@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import reducers from '../reacttypeahead';
+import data from '../reacttypeahead';
 
 const rootReducer = combineReducers({
-  reducers
+  data
 });
 
 export default rootReducer;
