@@ -43,6 +43,8 @@ class App extends React.Component<AppProps, AppState> {
 	}
 }
 
+// Global State
+// ToDo Переименовать Page -> App, Page -> TypeHead
 const mapStateToProps = state => ({
 	icons: state.data.icons,
 	value: state.data.value

@@ -21,7 +21,7 @@ class SearchBlock extends React.Component<SearchBlockProps, SearchBlockState> {
     const text = e.target.value.trim();
     this.setState({ query: text });
 
-     this.props.onExternalUpdate(text);
+    this.props.onExternalUpdate(text);
   }
 
   render() {
