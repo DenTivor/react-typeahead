@@ -1,7 +1,9 @@
 import * as React from 'react'
 
 interface SearchBlockProps {
-  onExternalUpdate: (text:string)=>void;
+  onExternalValueUpdate: (text:string) => void;
+  onExternalBlur: () => void;
+  onExternalFocus: () => void;
   value?: string;
 }
 
@@ -21,7 +23,15 @@ class SearchBlock extends React.Component<SearchBlockProps, SearchBlockState> {
     const text = e.target.value.trim();
     this.setState({ query: text });
 
-    this.props.onExternalUpdate(text);
+    this.props.onExternalValueUpdate(text);
+  }
+
+  handleBlur() {
+    this.props.onExternalBlur();
+  }
+
+  handleFocus() {
+    this.props.onExternalFocus();
   }
 
   render() {
@@ -29,6 +39,8 @@ class SearchBlock extends React.Component<SearchBlockProps, SearchBlockState> {
       <div className="search-block">
         <input className="search-input"
           onChange={this.handleChange.bind(this)}
+          onBlur={this.handleBlur.bind(this)}
+          onFocus={this.handleFocus.bind(this)}
           value={this.state.query}
         />
         <div className="loader-wrapper">

@@ -1,63 +1,20 @@
-import { Dispatch } from 'redux' //it calls action to update state of app
-import { connect } from 'react-redux'
-import * as React from 'react'
+import * as React from 'react';
+import Typeahead from './Typeahead'
 
-import {
-  SearchBlock,
-  ItemsList,
-  model,
-  findIcons,
-  requestIcons,
-  receiveIcons
-} from '../../reacttypeahead'
-
-interface AppProps {
-	icons: model.Icon[];
-	value: string;
-	dispatch: Dispatch<{}>;
-	getIcons(value: string):void;
-}
-
-interface AppState {
-}
-
-class App extends React.Component<AppProps, AppState> {
-	constructor(props, context) {
-		super(props, context);
-	}
-
+class App extends React.Component<void, void> {
 	render() {
-		const { icons, getIcons } = this.props;
-		return (
-			<div className="search-block-wrapper">
-				<div className='search-block-inner '>
-				  <SearchBlock
-				  	onExternalUpdate={(text: string) => {getIcons(text)}}
-				  />
-				  <ItemsList
-				  	items={icons}
-				  />
+		return(
+			<div className="content">
+				<div className="content-inner">
+					<div className="central-part-wrapper">
+						<div className="central-part">
+							<Typeahead />
+						</div>
+					</div>
 				</div>
 			</div>
 		)
 	}
 }
 
-// Global State
-// ToDo Переименовать Page -> App, Page -> TypeHead
-const mapStateToProps = state => ({
-	icons: state.data.icons,
-	value: state.data.value
-});
-
-const mapDispatchToProps = dispatch => ({
-	getIcons: (value: string) => {
-		dispatch(requestIcons(value));
-
-		findIcons(value).then((icons: model.Icon[]) => {
-			dispatch(receiveIcons(icons));
-		});
-	}
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App); //it connects an application to store
+export default App;

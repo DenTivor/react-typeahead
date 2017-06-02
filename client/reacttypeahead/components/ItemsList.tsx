@@ -22,8 +22,7 @@ class ItemsList extends React.Component<ItemsListProps, ItemsListState> {
 
 	render() {
 		const { items } = this.props;
-		console.log("items");
-		console.log(items);
+
 		let itemsTplList = items.map(function(item, index) {
 	        return (
 	          <div className="item-wrapper" key={index}>
@@ -31,8 +30,6 @@ class ItemsList extends React.Component<ItemsListProps, ItemsListState> {
 	          </div>
 	        )
 	      })
-
-		console.log(itemsTplList);
 
 	    return(
 	      <div className="items-list-block">

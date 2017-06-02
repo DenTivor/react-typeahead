@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Store, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import Page from './main/components/Page';
+import App from './main/components/App';
 import rootReducer from './main/reducer';
 
 const initialState = {};
@@ -12,7 +12,7 @@ const store: Store<any> = createStore(rootReducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Page />
+    <App />
   </Provider>,
   document.getElementById('app')
 );
