@@ -14,20 +14,18 @@ const initialState: IState = {
 
 export default handleActions<IState, any>({
   [LOAD_ICONS_START] : (state: IState, action: Action<RequestIcon>) : IState => {
-    console.log(LOAD_ICONS_START);
-
     return {
       ...state,
       icons: [],
-      value: action.payload.value
+      processStatus: action.payload.processStatus
     };
   },
-  [LOAD_ICONS_SUCCESS] : (state: IState, action: Action<ReceiveIcons>) : IState => {
-    console.log(LOAD_ICONS_SUCCESS);
 
+  [LOAD_ICONS_SUCCESS] : (state: IState, action: Action<ReceiveIcons>) : IState => {
     return {
       ...state,
-      icons: action.payload.icons
+      icons: action.payload.icons,
+      processStatus: action.payload.processStatus
     };
   }
 }, initialState);

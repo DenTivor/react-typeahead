@@ -15,6 +15,7 @@ interface TypeaheadProps {
 	icons: model.Icon[];
 	value: string;
 	dispatch: Dispatch<{}>;
+	processStatus: string;
 	getIcons(value: string): void;
 	onExternalBlur(): void;
 	onExternalFocus(): void;
@@ -37,7 +38,7 @@ class Typeahead extends React.Component<TypeaheadProps, TypeaheadState> {
 	}
 
 	render() {
-		const { icons, getIcons } = this.props;
+		const { icons, getIcons, processStatus } = this.props;
 
 		return (
 			<div className="search-block-wrapper">
@@ -46,6 +47,7 @@ class Typeahead extends React.Component<TypeaheadProps, TypeaheadState> {
 				  	onExternalValueUpdate={(text: string) => {getIcons(text)}}
 				  	onExternalBlur={this.updateViewStatus.bind(this, 'passive')}
 					onExternalFocus={this.updateViewStatus.bind(this, 'active')}
+					requestStatus={processStatus}
 				  />
 				  <ItemsList
 				  	items={icons}
@@ -60,15 +62,16 @@ class Typeahead extends React.Component<TypeaheadProps, TypeaheadState> {
 // ToDo Переименовать Page -> App, Page -> TypeHead
 const mapStateToProps = state => ({
 	icons: state.data.icons,
-	value: state.data.value
+	value: state.data.value,
+	processStatus: state.data.processStatus
 });
 
 const mapDispatchToProps = dispatch => ({
 	getIcons: (value: string) => {
-		dispatch(requestIcons(value));
+		dispatch(requestIcons(value, 'loading'));
 
 		findIcons(value).then((icons: model.Icon[]) => {
-			dispatch(receiveIcons(icons));
+			dispatch(receiveIcons(icons, ''));
 		});
 	}
 });

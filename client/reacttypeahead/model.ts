@@ -9,10 +9,12 @@ export type Icon = {
 
 export type RequestIcon = {
 	value: string;
+  processStatus: string;
 }
 
 export type ReceiveIcons = {
 	icons: Icon[];
+  processStatus: string;
 }
 
 export type IState = {

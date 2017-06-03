@@ -4,6 +4,7 @@ interface SearchBlockProps {
   onExternalValueUpdate: (text:string) => void;
   onExternalBlur: () => void;
   onExternalFocus: () => void;
+  requestStatus: string;
   value?: string;
 }
 
@@ -35,8 +36,10 @@ class SearchBlock extends React.Component<SearchBlockProps, SearchBlockState> {
   }
 
   render() {
+    let loadingStatus = (this.props.requestStatus) ? this.props.requestStatus : '';
+    
     return(
-      <div className="search-block">
+      <div className={'search-block ' + loadingStatus}>
         <input className="search-input"
           onChange={this.handleChange.bind(this)}
           onBlur={this.handleBlur.bind(this)}

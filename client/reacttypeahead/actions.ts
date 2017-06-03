@@ -13,14 +13,14 @@ import {
   Icon
 } from './model'
 
-const requestIcons = createAction<RequestIcon, string>(
+const requestIcons = createAction<RequestIcon, string, string>(
   LOAD_ICONS_START,
-  (text: string) => ({value: text}) 
+  (text: string, processStatus: string) => ({value: text, processStatus: processStatus}) 
 );
 
-const receiveIcons = createAction<ReceiveIcons, Icon[]>(
+const receiveIcons = createAction<ReceiveIcons, Icon[], string>(
   LOAD_ICONS_SUCCESS,
-  (icons: Icon[]) => ({icons: icons}) 
+  (icons: Icon[], processStatus: string) => ({icons: icons, processStatus: processStatus}) 
 );
 
 const findIcons = (value: string) => {
