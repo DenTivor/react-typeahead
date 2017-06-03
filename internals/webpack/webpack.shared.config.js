@@ -30,8 +30,7 @@ module.exports = (options) => ({
     }, {
       test: /\.(jpg|png|gif)$/,
       loaders: [
-        'file-loader',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+        'file-loader'
       ],
     }, {
       test: /\.html$/,
@@ -67,7 +66,8 @@ module.exports = (options) => ({
     ],
   }, options.resolve),
 
-  devtool: options.devtool,
+  // devtool: options.devtool,
+  devtool: 'cheap-module-eval-source-map',
 
   target: 'web',
 });
