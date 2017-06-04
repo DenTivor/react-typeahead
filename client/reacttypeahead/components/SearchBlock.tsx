@@ -36,10 +36,10 @@ class SearchBlock extends React.Component<SearchBlockProps, SearchBlockState> {
   }
 
   render() {
-    let loadingStatus = (this.props.requestStatus) ? this.props.requestStatus : '';
-    
+    const { requestStatus } = this.props;
+     
     return(
-      <div className={'search-block ' + loadingStatus}>
+      <div className={'search-block ' + requestStatus}>
         <input className="search-input"
           onChange={this.handleChange.bind(this)}
           onBlur={this.handleBlur.bind(this)}

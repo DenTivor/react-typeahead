@@ -20,4 +20,5 @@ export type ReceiveIcons = {
 export type IState = {
   icons?: Icon[];
   value?: string;	
+  processStatus?: string;
 }

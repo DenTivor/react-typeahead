@@ -9,7 +9,8 @@ import {
 
 const initialState: IState = {
   icons: [],
-  value: ''
+  value: '',
+  processStatus: ''
 };
 
 export default handleActions<IState, any>({
