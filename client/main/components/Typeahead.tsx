@@ -58,8 +58,6 @@ class Typeahead extends React.Component<TypeaheadProps, TypeaheadState> {
 	}
 }
 
-// Global State
-// ToDo Переименовать Page -> App, Page -> TypeHead
 const mapStateToProps = state => ({
 	icons: state.data.icons,
 	value: state.data.value,
@@ -68,11 +66,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getIcons: (value: string) => {
-		dispatch(requestIcons(value, 'loading'));
-
-		findIcons(value).then((icons: model.Icon[]) => {
-			dispatch(receiveIcons(icons, ''));
-		});
+		dispatch(findIcons(value));
 	}
 });
 

@@ -23,16 +23,27 @@ const receiveIcons = createAction<ReceiveIcons, Icon[], string>(
   (icons: Icon[], processStatus: string) => ({icons: icons, processStatus: processStatus}) 
 );
 
-const findIcons = (value: string) => {
-
+function fetchIcons(value: string) {
   const promise: Promise<Icon[]> = new Promise(
     (resolve: (icons: Icon[]) => void, reject: (str: string) => void) => {
       resolve(IconsApi.get(value));
     }
   );
   
-  return promise; 
+  return promise;
 }
+
+const findIcons = (value: string) => dispatch => {
+  dispatch(requestIcons(value, 'loading'));
+
+  fetchIcons(value)
+    .then((icons: Icon[]) => {
+      setTimeout(() => {
+        dispatch(receiveIcons(icons, ''));
+      }, 2000)
+    });
+}
+
 
 export {
   requestIcons,
