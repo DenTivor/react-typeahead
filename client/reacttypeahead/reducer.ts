@@ -13,20 +13,42 @@ const initialState: IState = {
   processStatus: ''
 };
 
-export default handleActions<IState, any>({
-  [LOAD_ICONS_START] : (state: IState, action: Action<RequestIcon>) : IState => {
-    return {
-      ...state,
-      icons: [],
-      processStatus: action.payload.processStatus
-    };
-  },
+// export default handleActions<IState, any>({
+//   [LOAD_ICONS_START] : (state: IState, action: Action<RequestIcon>) : IState => {
+//     return {
+//       ...state,
+//       icons: [],
+//       processStatus: action.payload.processStatus
+//     };
+//   },
 
-  [LOAD_ICONS_SUCCESS] : (state: IState, action: Action<ReceiveIcons>) : IState => {
+//   [LOAD_ICONS_SUCCESS] : (state: IState, action: Action<ReceiveIcons>) : IState => {
+//     return {
+//       ...state,
+//       icons: action.payload.icons,
+//       processStatus: action.payload.processStatus
+//     };
+//   }
+// }, initialState);
+
+
+export default function actions(state = initialState, action: any):IState {
+  let type = action.type;
+  
+  if (type === LOAD_ICONS_START) {
+      return {
+        ...state,
+        icons: [],
+        processStatus: action.payload.processStatus
+      };
+  }
+  else if (type === LOAD_ICONS_SUCCESS) {
     return {
       ...state,
       icons: action.payload.icons,
       processStatus: action.payload.processStatus
     };
   }
-}, initialState);
+  
+  return state;
+}
