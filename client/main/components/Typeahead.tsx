@@ -67,12 +67,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getIcons: (value: string) => {
-		dispatch(requestIcons(value, 'loading'));
+	// getIcons: (value: string) => {
+	// 	dispatch(requestIcons(value, 'loading'));
 
-		findIcons(value).then((icons: model.Icon[]) => {
-			dispatch(receiveIcons(icons, ''));
-		});
+	// 	findIcons(value).then((icons: model.Icon[]) => {
+	// 		dispatch(receiveIcons(icons, ''));
+	// 	});
+	// }
+
+	getIcons: (value: string) => {
+		dispatch(findIcons(value));
 	}
 });
 
